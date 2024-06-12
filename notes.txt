@@ -1,0 +1,136 @@
+
+directives:
+
+v-model: assign variable;
+v-if: remove or add element from DOM
+v-show: chande display(css display none)
+v-cloak: hide elements before app is ready
+v-on:click: eventListener on click, ex v-on:click="isVisible= !isVisible"=> element toggle; v-on === @
+v-bind:label="emailLabel" => binds atritibute to be recognozed in vue
+v-bind:label === :label
+v-for: vue for,<p v-for="str in inputs" :key="str">{{str}}</p>, ;
+
+
+events:
+
+@keyup.enter or @keyup.13 => listen to enter keytroke up;
+@click.right => listen to mouse right click;
+
+modifiers can be chained;
+
+@submit => listen to on Submit;
+@<event>.prevent => prevent default behaviour of event;
+
+Component:
+
+        in HTML:
+
+        <login-form />
+
+        in SCRIPT:
+
+        app.component('login-form', {
+            template: `
+                    <form @submit.prevent="handleSubmit">
+                        <h1>{{title}}</h1>
+                        <input type="email" v-model="email" />
+                        <input type="password" v-model="password" />
+                        <button> Log in</button>
+                    </form>
+                `,
+            data(){
+                return{
+                    title:'Login Form',
+                    email: '',
+                    password:'',
+                }
+            },
+            methods:{
+                handleSubmit(){
+                    console.log(this.email, this.password);
+                }
+            }
+
+        })
+
+Component Props
+
+        in PRENT ELEMENT TEMPLATE:
+
+        <custom-input v-model="email" :label="emailLabel"/>
+        <custom-input v-model="password" :label="passwordLabel"/>
+        .
+        .
+        .
+        data(){
+            return{
+                title:'Login Form',
+                email: '',
+                password:'',
+                emailLabel: 'Email',
+                passwordLabel:'Password'
+            }
+        },
+
+        in CHILD ELEMENT:
+
+        app.component('custom-input', {
+            template: `
+                <label>
+                    {{label}}
+                    <input type="text" v-model="inputValue">
+                </label>
+            `,
+            props: ['label', 'modelValue'],
+            computed:{
+                inputValue:{
+                    get(){
+                        return this.modelValue
+                    },
+                    set(value){
+                        console.log(value)
+                        this.$emit('update:modelValue', value) 
+                    }
+                }
+            }
+        })
+
+
+v-model creates :modelValue in the backgroud to be accesssed in the cild elemted, wich can later be emmited up to update the parent
+
+lifecycle hooks examples:
+created(),
+mounted(),
+unmounted,
+updated(),
+
+see for more:
+https://vuejs.org/guide/essentials/lifecycle.html
+
+v-model.number => similar to parseToInt
+
+!!!!IMPORTANT!!!!
+PROPS NOT PROP
+!!!!IMPORTANT!!!!
+!!!!IMPORTANT!!!!
+async and await
+!!!!IMPORTANT!!!!
+
+read more about .reduce()
+
+VUE CLI
+
+https://cli.vuejs.org/ OUTDATED???
+
+vue create my-project => create  a project using vue CLI
+
+
+Read up on BABEL
+
+SINLGE PAGE APPLICATION
+
+
+<router-link to= > instead of <a href= >
+<router-view/> => placeholder for page content
+
+stylesheets imported into main.js
