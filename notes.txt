@@ -124,13 +124,37 @@ https://cli.vuejs.org/ OUTDATED???
 
 vue create my-project => create  a project using vue CLI
 
+npm run serve => run project
+
 
 Read up on BABEL
 
 SINLGE PAGE APPLICATION
 
 
+FILE STRUCTURE
+
+public => page to be displyed in client
+   |
+   |
+scrc => main projct folder
+   |
+   |___ assets => folder for assets, i.e. media files, css & scss
+   |    component => vue components
+   |    router => folder for index.js, file to set routing paths
+   |    views => views made up of various components to be displayed in index.hmtl by the route set by index.js
+   |             componentsto be injected into <router-view>
+   |
+main.js => main JavaScript file, where conponents are mounted
+App.vue => main conponent
+
 <router-link to= > instead of <a href= >
 <router-view/> => placeholder for page content
 
 stylesheets imported into main.js
+
+in filepaths @ references src folder
+
+read up on VUE X 
+
+
